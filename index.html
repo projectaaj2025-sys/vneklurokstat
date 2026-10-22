@@ -2974,7 +2974,10 @@ function titleSlide(b){
         <div class="tape p" style="right:-14px;top:-10px;transform:rotate(10deg)"></div>
         <h2 class="hand" style="font-size:30px">Главный вопрос урока</h2>
         <p class="hand" style="font-size:25px;line-height:1.4;margin:6px 0 16px">Если монетка 5 раз подряд упала орлом, обязан ли следующий бросок быть решкой? И за счёт чего казино остаётся в плюсе на длинной дистанции?</p>
-        <button class="btn red big2" data-go="1">Поехали! →</button>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center">
+          <button class="btn red big2" data-go="1">Поехали! →</button>
+          <button class="btn" data-qr="1" aria-haspopup="dialog" title="Показать QR-код: открыть урок на телефоне">📱 QR-код урока</button>
+        </div>
       </section>
     </div>`;
 }
@@ -4445,6 +4448,13 @@ renderSlide();
 
   openBtn.addEventListener('click',open);
   closeBtn.addEventListener('click',close);
+  /* кнопка «QR-код урока» на титульном слайде */
+  document.addEventListener('click',e=>{
+    const t=e.target.closest&&e.target.closest('[data-qr]');
+    if(!t)return;
+    e.preventDefault();
+    open();
+  });
   modal.addEventListener('click',e=>{if(e.target===modal)close();});
 
   /* клавиатура: Q — открыть, Esc — закрыть; стрелки внутри окна не листают слайды */
